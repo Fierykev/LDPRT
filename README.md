@@ -145,6 +145,10 @@ http://www.ppsloan.org/publications/StupidSH36.pdf
 
 https://en.wikipedia.org/wiki/Spherical_harmonics#Condon.E2.80.93Shortley_phase
 
+https://graphics.stanford.edu/papers/scatteringeqns/setalk.pdf
+
+https://www.solidangle.com/research/s2013_bssrdf_slides.pdf
+
 **<p align="center">References for Models</p>**
 http://graphics.cs.williams.edu/data/meshes.xml
 
