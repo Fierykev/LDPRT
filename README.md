@@ -88,8 +88,8 @@ to do to light the scene.
 
 The results from the soft shadow PRT yield the amount of energy present
 at each vertex in the scene. To preform radiosity, all surfaces are
-assumed to be lambertian reflectors. After going through a set number of
-bounces, it is assumed that the results converges. The below scene
+assumed to be lambertian reflectors. For each bounce, seperate coefficients are used
+and eventually summed together after a constant number of bounces is reached. The below scene
 demonstrates interreflections in the infamous Cornell Box. The green and
 red color of the walls “bleed” onto the white boxes in the scene.
 
