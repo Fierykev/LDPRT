@@ -125,9 +125,13 @@ of the mesh.</p>
 <p align="center"><img src="media/image14.png" width="400" height="400" /></p>
 
 **<p align="center">Libraries</p>**
+
 OpenGL - for Rendering
+
 freeglut - for Windowing and Keyboard Input
+
 libLBFGS - for optimization of LDPRT coefficients and lobe axis
+
 DevIL - for image loading
 
 **<p align="center">References for Information</p>**
