@@ -140,4 +140,4 @@ https://graphics.stanford.edu/data/3Dscanrep/
 
 <p align="center"><img src="media/image11.png" /></p>
 
-Hey ladies he's single!!!!
+Hey ladies, he's single!!!!
