@@ -123,6 +123,8 @@ http://silviojemma.com/public/papers/lighting/spherical-harmonic-lighting.pdf
 
 http://onlinelibrary.wiley.com/doi/10.1111/j.1467-8659.2007.01071.x/pdf
 
+http://www.inf.ufrgs.br/~oliveira/pubs_files/Slomp_Oliveira_Patricio-Tutorial-PRT.pdf
+
 http://www.ppsloan.org/publications/StupidSH36.pdf
 
 https://en.wikipedia.org/wiki/Spherical_harmonics#Condon.E2.80.93Shortley_phase
