@@ -113,7 +113,7 @@ To give artists more control over the process, an
 artist can define the thickness of a texture via an albedo map.  The map's
 RGB channels are interpreted as the albedo color while the alpha channel is
 the thickness.  By applying a backlight whose intensity is effected by thickness
-and color of the albedo texture, a lighting scheme for thin membranes is created.
+and color of the albedo texture, a lighting scheme taking into account membrane thickness is achieved.
 
 <p align="center">Note how the portion of the model that is front lit displays a dark wood texture,
 whereas the portion that is backlit uses a leopard pattern.  The lighting implies some leopard lining inside
