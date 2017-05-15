@@ -370,9 +370,6 @@ void LDPRT::load(ObjLoader* geo)
 	// convert prt to ldprt
 	//calcLDPRTBFGS(&prt);
 	calcLDPRT(&prt);
-
-	// free prt ?
-
 }
 
 void LDPRT::draw()

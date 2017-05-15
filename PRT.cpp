@@ -128,47 +128,40 @@ void PRT::calculate(BVH* bvh, size_t radNumSamples)
 	size_t numSamples;
 	PRTSample* samples;
 	bool** hitMarks, **hasEnergy;
-	/*
-	numSamples = radNumSamples * radNumSamples;
-	samples = genSamples(radNumSamples);
-	calculateSHForSamples(samples, numSamples);
 	
-	hitMarks = new bool*[numSamples];
-	
-	for (size_t i = 0; i < numSamples; i++)
+	if (!loadShadow(samples, &numSamples, hitMarks, hasEnergy, 		"Output/HeadSubSurf.shadow"))
 	{
-		hitMarks[i] = new bool[bvh->numberofVerts()];
+		numSamples = radNumSamples * radNumSamples;
+		samples = genSamples(radNumSamples);
+		calculateSHForSamples(samples, numSamples);
+		
+		hitMarks = new bool*[numSamples];
+		
+		for (size_t i = 0; i < numSamples; i++)
+		{
+			hitMarks[i] = new bool[bvh->numberofVerts()];
 
-		memset(hitMarks[i], 0, sizeof(bool) * bvh->numberofVerts());
+			memset(hitMarks[i], 0, sizeof(bool) * bvh->numberofVerts());
+		}
+
+		hasEnergy = new bool*[numSamples];
+
+		for (size_t i = 0; i < numSamples; i++)
+		{
+			hasEnergy[i] = new bool[bvh->numberofVerts()];
+
+			memset(hasEnergy[i], 0, sizeof(bool) * bvh->numberofVerts());
+		}
+
+		vertCoeffs = calcShadow(bvh, samples, numSamples, hitMarks, hasEnergy);
+		
+		// calculate subsurface scattering
+		addSubsurfaceMonteCarlo(bvh, samples, numSamples, vertCoeffs, hasEnergy);
+
+		// calculate  interreflection
+		addInterreflection(bvh, samples, numSamples, vertCoeffs, hitMarks);
 	}
-
-	hasEnergy = new bool*[numSamples];
-
-	for (size_t i = 0; i < numSamples; i++)
-	{
-		hasEnergy[i] = new bool[bvh->numberofVerts()];
-
-		memset(hasEnergy[i], 0, sizeof(bool) * bvh->numberofVerts());
-	}
-
-	vertCoeffs = calcShadow(bvh, samples, numSamples, hitMarks, hasEnergy);
 	
-	dumpShadow(bvh, samples, numSamples, hitMarks, hasEnergy, "Monkey.shadow");
-	*/
-	//loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Output/HeadInterref.shadow");
-
-	//loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Monkey.shadow");
-
-	loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Output/HeadSubSurf.shadow");
-	
-	// calculate subsurface scattering
-	//addSubsurfaceMonteCarlo(bvh, samples, numSamples, vertCoeffs, hasEnergy);
-
-	// calculate  interreflection
-	//addInterreflection(bvh, samples, numSamples, vertCoeffs, hitMarks);
-
-	//loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Output/HeadSubSurf.shadow");
-
 	// clear mem
 	for (size_t i = 0; i < numSamples; i++)
 	{

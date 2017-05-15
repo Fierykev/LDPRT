@@ -15,10 +15,6 @@ size_t frame;
 clock_t lastTime;
 
 const char* morphList[] = {
-	//"Models/Bunny/Bunny.obj"
-	
-	//"Models/Cornell.obj"
-	
 	"Morphs/Head.obj",
 	"Morphs/Mouth.obj",
 	"Morphs/Smile.obj"
