@@ -50,7 +50,7 @@ to a good mix of detail at interactive framerates.
 
 <p align="center"><img src="media/image4.png" width="400" height="400" /></p>
 
-Optimization of Lobe Axis
+<p align="center">Optimization of Lobe Axis</p>
 
 Using Zonal Harmonics, LDPRTs estimate PRT lighting with a BFGS to
 minimize error between the two models. Although Zonal Harmonics can have
@@ -60,15 +60,14 @@ lobe axis for rotation which, in most cases, is the same as the normal.
 Hence, after the BFGS is completed, model normals are replaced with the
 direction of Zonal Harmonic lobe axis.
 
-Normals without BFGS and with BFGS
 
-(approximately .01 difference for single lobe which is not noticeable)
+<p align="center">(approximately .01 difference for single lobe which is not noticeable)</p>
 
-![](media/image5.png)![](media/image5.png)
+<p align="center"><img src="media/image5.png" width="300" height="300" /><img src="media/image6.png" width="300" height="300" /></p>
 
-Soft shadows
+<p align="center">Soft shadows</p>
 
-Interreflections
+<p align="center">Interreflections</p>
 
 The results from the soft shadow PRT yield the amount of energy present
 at each vertex in the scene. To preform radiosity, all surfaces are
@@ -77,9 +76,9 @@ bounces, it is assumed that the results converges. The below scene
 demonstrates interreflections in the infamous Cornell Box. The green and
 red color of the walls “bleed” onto the white boxes in the scene.
 
-![](media/image6.png)![](media/image7.png)
+<p align="center"><img src="media/image7.png" width="300" height="300" /><img src="media/image8.png" width="300" height="300" /></p>
 
-Subsurface Scattering
+<p align="center">Subsurface Scattering</p>
 
 For subsurface scattering, the random walk algorithm is implemented. By
 choosing several randomly generated paths, the subsurface scattering of
