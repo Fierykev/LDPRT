@@ -14,21 +14,24 @@ application to represent diffuse lighting phenomena such as shadows,
 interreflections, and subsurface scattering as a set of constants. The
 constants are calculated though an offline simulation via methods
 similar to that of a raytracer. To accomplish this feat, PRTs represent
-data in the scene using Spherical Harmonics. Because Spherical Harmonics
+data in the scene using a Spherical Harmonic basis. Because Spherical Harmonics
 form the basis of SO(3) (3D rotation group), information for how
 lighting interacts at arbitrary light angles can be stored within them.
 Once the constants are produced, models can be rendered in real-time
-with global illumination effects. These effects are consistent for all
+with indirect illumination effects. These effects are consistent for all
 camera positions given the light source is infinitely far away from the
 scene. The direction of the incoming light is input into the PRT at
-runtime and vertex colors taking into account global illumination are
+runtime and vertex colors taking into account objects in the scene are
 returned. Unfortunately, PRTs only work for static scenes as when a
 vertex position changes, the PRT lighting model fails. LDPRTs seek to
 compensate for PRTs Achilles heel by using a Zonal Harmonic basis. Thus,
 an LDPRT can quickly rotate a rest coordinate frame to its current
 deformed orientation. LDPRTs work best for limited motion such as facial
 expressions as they do not fully model global illumination for the
-rotated frame.
+rotated frame.  Surprisingly, LDPRTs do not need to store any more data than
+PRTs (assuming one lobe axis) and can be evaluated in constant time per vertex.  
+For the purposes of this project, spherical harmonics are evaluated up to l=6, 
+leading to 36 coefficients for both the PRT and LDPRT.
 
 **<p align="center">Morph Targeting</p>**
 
