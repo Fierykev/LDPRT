@@ -137,9 +137,6 @@ https://graphics.stanford.edu/data/3Dscanrep/
 (Note that assets and libraries could not be included in this git repo due to filesize constraints.  I am currently uploading them to my google drive and will link to it by the presentation tomorrow)
 
 **<p align="center">Artifact</p>**
-Since all images in this document are from the project, any of them can be considered
-an artifact.  However, because of the assignment specifications, here is a single artifact
-for the project:
 
 <p align="center"><img src="media/image11.png" /></p>
 
