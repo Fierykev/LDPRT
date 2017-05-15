@@ -1,5 +1,5 @@
-#define NUM_SCENES 3
-#define START_SCENE 1
+#define NUM_SCENES 4
+#define START_SCENE 0
 
 #include <time.h>
 
