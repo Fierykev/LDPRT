@@ -128,7 +128,7 @@ void PRT::calculate(const char* name, BVH* bvh, size_t radNumSamples)
 	size_t numSamples;
 	PRTSample* samples;
 	bool** hitMarks, **hasEnergy;
-	/*
+	
 	numSamples = radNumSamples * radNumSamples;
 	samples = genSamples(radNumSamples);
 	calculateSHForSamples(samples, numSamples);
@@ -176,8 +176,7 @@ void PRT::calculate(const char* name, BVH* bvh, size_t radNumSamples)
 	dumpFile += "SubSurf.shadow";
 
 	dumpShadow(bvh, samples, numSamples, hitMarks, hasEnergy, dumpFile.c_str());
-	*/
-	loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Output/Monkey.shadow");
+	
 	// clear mem
 	for (size_t i = 0; i < numSamples; i++)
 	{
