@@ -34,7 +34,7 @@ rotated frame.
 
 Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows for an artist to move vertices on a model to a desired position in order to more effectively create the ideal pose.  Once all poses / morphs are made by the artist, a base position (a chosen pose) is established.  To animate the figure, the artist interpolates between the difference between the morph vertex's position and that of the base.  Morph Targets are primarily used in facial animation to give the artist complete control over how a character looks.  Since the process is cumbersome and animations are not as smooth as those produced by Skeletal Animation, Morph Targeting still remains limited to expression.  However, because facial expressions do not require large vertex changes, LDPRT works perfectly for Morph Targeting.
 
-<p align="center">Left Side is the Base Position (no morph applied), Right Side is a Morph Target that drastically alters vertex positions:</p>
+<p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that drastically alters vertex positions:</p>
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
 
@@ -91,4 +91,7 @@ rotated by a certain number of degrees before proceeding. Hence,
 subsurface scattering is implemented via monte carlo integration. In the
 below image, note how the area below the cheek is lit although the light
 source is on the other side of the model.
+
+<p align="center">Left side is green color bleed; Right side is red color bleed:</p>
+
 <p align="center"><img src="media/image9.png" width="400" height="400" /></p>
