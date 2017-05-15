@@ -76,7 +76,7 @@ gradient of the 6th degree Spherical Harmonic.
 
 To compute a PRT, several samples are taken for light sources scattered around a sphere
 that has an infinite radius.  Since the light source is infinitely far away, a ray can
-be cast from every vertex on the mesh towards the light source to see if it is blocked.  
+be cast from every vertex on the mesh towards the light source to see if it is blocked. 
 Thus, for each sample light source, one ray is produced for every vertex per sample.  
 Because this is similar to Monte Carlo integration in a ray tracer for soft shadows,
 soft shadows are obtained with no additional cost to what the PRT would already have
