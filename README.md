@@ -80,6 +80,8 @@ bounces, it is assumed that the results converges. The below scene
 demonstrates interreflections in the infamous Cornell Box. The green and
 red color of the walls “bleed” onto the white boxes in the scene.
 
+<p align="center">Left side is green color bleed; Right side is red color bleed:</p>
+
 <p align="center"><img src="media/image7.png" width="300" height="300" /><img src="media/image8.png" width="300" height="300" /></p>
 
 **<p align="center">Subsurface Scattering</p>**
@@ -88,10 +90,11 @@ For subsurface scattering, the random walk algorithm is implemented. By
 choosing several randomly generated paths, the subsurface scattering of
 skin is approximated. After moving a set distance, the path is randomly
 rotated by a certain number of degrees before proceeding. Hence,
-subsurface scattering is implemented via monte carlo integration. In the
-below image, note how the area below the cheek is lit although the light
-source is on the other side of the model.
+subsurface scattering is implemented via monte carlo integration.
 
-<p align="center">Left side is green color bleed; Right side is red color bleed:</p>
+
+<p align="center">In the
+below image, note how the area below the cheek is lit although the light
+source is on the other side of the model.</p>
 
 <p align="center"><img src="media/image9.png" width="400" height="400" /></p>
