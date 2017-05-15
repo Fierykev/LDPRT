@@ -102,8 +102,11 @@ red color of the walls “bleed” onto the white boxes in the scene.
 For subsurface scattering, the random walk algorithm is implemented. By
 choosing several randomly generated paths, the subsurface scattering of
 skin is approximated. After moving a set distance, the path is randomly
-rotated by a certain number of degrees before proceeding. Hence,
-subsurface scattering is implemented via monte carlo integration.
+rotated by a certain number of degrees before proceeding.  Unfortunately,
+the effects of subsurface scattering are hard to see since random walk
+converges slowly.  Since PRTs must cast millions of rays just for shadows,
+it is not feasible to produce enough rays for random walk to yield the
+correct results
 
 <p align="center"><img src="media/image9.png" width="400" height="400" /></p>
 
