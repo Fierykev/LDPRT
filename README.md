@@ -130,6 +130,8 @@ OpenGL - for Rendering
 
 freeglut - for Windowing and Keyboard Input
 
+glew - for shader loading
+
 libLBFGS - for optimization of LDPRT coefficients and lobe axis
 
 DevIL - for image loading
