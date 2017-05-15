@@ -5,7 +5,7 @@
 
 <p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
-**<p align="center">Motivation:</p>**
+**<p align="center">Motivation</p>**
 
 Local Deformable Precomputed Radiance Transfer (LDPRT) is a method
 proposed by Microsoft in 2005 to compensate for the common problems with
@@ -38,7 +38,7 @@ Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
 
-**<p align="center">Wrinkle Model:</p>**
+**<p align="center">Wrinkle Model</p>**
 
 A wrinkle model was also implemented to alter normals based on the
 difference in primitive area between the rest and deformed frame.
