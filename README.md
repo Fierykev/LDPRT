@@ -106,3 +106,21 @@ subsurface scattering is implemented via monte carlo integration.
 source is on the other side of the model.</p>
 
 <p align="center"><img src="media/image9.png" width="400" height="400" /></p>
+
+**<p align="center">Libraries</p>**
+OpenGL - for Rendering
+freeglut - for Windowing and Keyboard Input
+libLBFGS - for optimization of LDPRT coefficients and lobe axis
+DevIL - for image loading
+
+**<p align="center">References for Information</p>**
+https://www.microsoft.com/en-us/research/wp-content/uploads/2017/01/ldprt.pdf
+https://graphics.cg.uni-saarland.de/fileadmin/cguds/courses/ss15/ris/slides/RIS18Kautz.pdf
+http://silviojemma.com/public/papers/lighting/spherical-harmonic-lighting.pdf
+http://onlinelibrary.wiley.com/doi/10.1111/j.1467-8659.2007.01071.x/pdf
+http://www.ppsloan.org/publications/StupidSH36.pdf
+https://en.wikipedia.org/wiki/Spherical_harmonics#Condon.E2.80.93Shortley_phase
+
+**<p align="center">References for Models</p>**
+http://graphics.cs.williams.edu/data/meshes.xml
+https://graphics.stanford.edu/data/3Dscanrep/
