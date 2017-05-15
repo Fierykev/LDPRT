@@ -87,3 +87,4 @@ rotated by a certain number of degrees before proceeding. Hence,
 subsurface scattering is implemented via monte carlo integration. In the
 below image, note how the area below the cheek is lit although the light
 source is on the other side of the model.
+<p align="center"><img src="media/image9.png" width="400" height="400" /></p>
