@@ -118,7 +118,7 @@ be achieved.
 <p align="center">Note how the portion of the model that is front lit displays a dark wood texture,
 whereas the portion that is backlit uses a leopard pattern.  The lighting implies some leopard lining inside
 of the mesh.</p>
-<p align="center"><img src="media/image14.png" width="700" height="700" /></p>
+<p align="center"><img src="media/image14.png" width="550" height="550" /></p>
 
 **<p align="center">Libraries</p>**
 OpenGL - for Rendering
