@@ -102,12 +102,14 @@ ObjLoader::~ObjLoader()
 void ObjLoader::reset()
 {
 	delete[] vertex_final_array;
+	vertex_final_array = nullptr;
 
 	for (auto i : material)
 	{
 		if (i.texID != 0)
 		{
 			glDeleteTextures(1, &i.texID);
+			i.texID = 0;
 		}
 	}
 }
@@ -350,7 +352,7 @@ void ObjLoader::Material_File(string filename, string matfile, unsigned long* te
 
 					*radiance /= numPixels;
 				}
-				
+
 				// setup texture
 				*texID = image->genGlImage();
 			}
@@ -364,16 +366,18 @@ void ObjLoader::Material_File(string filename, string matfile, unsigned long* te
 	}
 }
 
-void ObjLoader::Load_Geometry(const char *filename)
+void ObjLoader::Load_Geometry(const char* filename)
 {
 	// delete past memory
 
 	if (vertex_final_array != nullptr)
-		delete vertex_final_array;
+		reset();
 
 	// allocate memory to the vectors on the heap
 
 	vx_array_i.clear();
+
+	vertexToColor.clear();
 
 	vx_array.clear();
 
@@ -1079,8 +1083,6 @@ void ObjLoader::drawLDPRT(const Vec3f** coeffs)
 				Vec3f tmp = 0;
 				for (int l = 0; l < NUM_BANDS; l++)
 				{
-					if (shIndex == 4)continue;
-
 					float weight = 0;
 
 					for (int m = -l; m <= l; m++)

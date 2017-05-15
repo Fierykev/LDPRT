@@ -119,6 +119,9 @@ void LightProb::draw()
 		glEnd();
 	}
 	glPopMatrix();
+
+	// reset color
+	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
 void LightProb::processKeys(unsigned char key, int x, int y)

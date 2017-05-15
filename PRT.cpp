@@ -121,47 +121,63 @@ void PRT::init()
 	
 }
 
-void PRT::calculate(BVH* bvh, size_t radNumSamples)
+void PRT::calculate(const char* name, BVH* bvh, size_t radNumSamples)
 {
 	vertNum = bvh->numberofVerts();
 
 	size_t numSamples;
 	PRTSample* samples;
 	bool** hitMarks, **hasEnergy;
+	/*
+	numSamples = radNumSamples * radNumSamples;
+	samples = genSamples(radNumSamples);
+	calculateSHForSamples(samples, numSamples);
 	
-	if (!loadShadow(samples, &numSamples, hitMarks, hasEnergy, 		"Output/HeadSubSurf.shadow"))
+	hitMarks = new bool*[numSamples];
+	
+	for (size_t i = 0; i < numSamples; i++)
 	{
-		numSamples = radNumSamples * radNumSamples;
-		samples = genSamples(radNumSamples);
-		calculateSHForSamples(samples, numSamples);
-		
-		hitMarks = new bool*[numSamples];
-		
-		for (size_t i = 0; i < numSamples; i++)
-		{
-			hitMarks[i] = new bool[bvh->numberofVerts()];
+		hitMarks[i] = new bool[bvh->numberofVerts()];
 
-			memset(hitMarks[i], 0, sizeof(bool) * bvh->numberofVerts());
-		}
-
-		hasEnergy = new bool*[numSamples];
-
-		for (size_t i = 0; i < numSamples; i++)
-		{
-			hasEnergy[i] = new bool[bvh->numberofVerts()];
-
-			memset(hasEnergy[i], 0, sizeof(bool) * bvh->numberofVerts());
-		}
-
-		vertCoeffs = calcShadow(bvh, samples, numSamples, hitMarks, hasEnergy);
-		
-		// calculate subsurface scattering
-		addSubsurfaceMonteCarlo(bvh, samples, numSamples, vertCoeffs, hasEnergy);
-
-		// calculate  interreflection
-		addInterreflection(bvh, samples, numSamples, vertCoeffs, hitMarks);
+		memset(hitMarks[i], 0, sizeof(bool) * bvh->numberofVerts());
 	}
+
+	hasEnergy = new bool*[numSamples];
+
+	for (size_t i = 0; i < numSamples; i++)
+	{
+		hasEnergy[i] = new bool[bvh->numberofVerts()];
+
+		memset(hasEnergy[i], 0, sizeof(bool) * bvh->numberofVerts());
+	}
+
+	vertCoeffs = calcShadow(bvh, samples, numSamples, hitMarks, hasEnergy);
+
+	string dumpFile = "Output/";
+	dumpFile += name;
+	dumpFile += ".shadow";
 	
+	dumpShadow(bvh, samples, numSamples, hitMarks, hasEnergy, dumpFile.c_str());
+	
+	// calculate  interreflection
+	addInterreflection(bvh, samples, numSamples, vertCoeffs, hitMarks);
+
+	dumpFile = "Output/";
+	dumpFile += name;
+	dumpFile += "Interref.shadow";
+
+	dumpShadow(bvh, samples, numSamples, hitMarks, hasEnergy, dumpFile.c_str());
+
+	// calculate subsurface scattering
+	addSubsurfaceMonteCarlo(bvh, samples, numSamples, vertCoeffs, hasEnergy);
+
+	dumpFile = "Output/";
+	dumpFile += name;
+	dumpFile += "SubSurf.shadow";
+
+	dumpShadow(bvh, samples, numSamples, hitMarks, hasEnergy, dumpFile.c_str());
+	*/
+	loadShadow(samples, &numSamples, hitMarks, hasEnergy, "Output/Monkey.shadow");
 	// clear mem
 	for (size_t i = 0; i < numSamples; i++)
 	{
@@ -1091,13 +1107,24 @@ void PRT::dump(const char* fileName)
 	out.close();
 }
 
+void PRT::reset()
+{
+	if (vertCoeffs != nullptr)
+	{
+		for (size_t i = 0; i < vertNum; i++)
+			delete[] vertCoeffs[i];
+
+		delete[] vertCoeffs;
+	}
+}
+
 bool PRT::load(const char* fileName)
 {
 	ifstream in(fileName);
 
 	string line;
-
-	if (!getline(in, line))
+	cout << fileName  << endl;
+	if (!in.is_open() || !getline(in, line))
 		return false;
 
 	vertNum = strtoul(line.c_str(), NULL, 0);

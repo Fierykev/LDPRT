@@ -9,8 +9,6 @@
 #include "ObjectFileLoader.h"
 #include "SphericalHarmonic.h"
 
-bool LDPRT::toggle = false;
-
 LDPRT::LDPRT()
 {
 
@@ -47,6 +45,10 @@ Vec3f getSHTex(float x, float y, int it)
 
 void LDPRT::genSphericalHarmonicTextures6(size_t size)
 {
+	// allocated already
+	if (harmonicTex[0] != 0)
+		return;
+
 	const float xSign[6] = {
 		1.f, 1.f, -1.f, 1.f, 1.f, 1.f
 	};
@@ -118,6 +120,9 @@ void LDPRT::calcLDPRT(PRT* prt)
 
 	float sh[NUM_BANDS * NUM_BANDS];
 	const Vertex* verts = obj->getVertices();
+
+	if (coeffs != nullptr)
+		delete[] coeffs;
 
 	coeffs = new Vec3f*[obj->getNumVertices()];
 
@@ -348,22 +353,29 @@ void LDPRT::calcLDPRTBFGS(PRT* prt)
 	lbfgs_free(vars);
 }
 
-void LDPRT::load(ObjLoader* geo)
+void LDPRT::load(const char* name, ObjLoader* geo)
 {
 	// store the object
 	obj = geo;
 
-	// create bvh from obj file
-	BVH bvh;
-	bvh.createBVH(geo);
+	string file = "Output/LDPRT/";
+	file += name;
+	file += ".prt";
 
-	// run PRT
-	prt.calculate(&bvh, 32);//32
+	// reset prt
+	prt.reset();
 
-	//prt.dump("Cornell.ldprt");
-	
-	//prt.load("Cornell.ldprt");//Torso.ldprt, Simple.ldprt
-	
+	// run PRT if needed
+	if (!prt.load(file.c_str()))
+	{
+		// create bvh from obj file
+		BVH bvh;
+		bvh.createBVH(geo);
+
+		prt.calculate(name, &bvh, 32); // 32^2 samples
+		prt.dump(file.c_str());
+	}
+
 	// create harmonic textures
 	genSphericalHarmonicTextures6(NUM_BANDS * NUM_BANDS);
 	
@@ -374,10 +386,10 @@ void LDPRT::load(ObjLoader* geo)
 
 void LDPRT::draw()
 {
-	if (toggle)
-		obj->drawLDPRT((const Vec3f**)coeffs);
-	else
-		prt.renderPRT(obj);
+	obj->drawLDPRT((const Vec3f**)coeffs);
 }
 
-// john milaney
+void LDPRT::prtDraw()
+{
+	prt.renderPRT(obj);
+}

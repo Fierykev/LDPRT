@@ -93,9 +93,11 @@ public:
 	static void init();
 
 	void calculate(
-		BVH* scene, size_t radNumSamples);
+		const char* name, BVH* scene, size_t radNumSamples);
 
 	const Vec3f** getCoeffs(){ return (const Vec3f**)vertCoeffs; }
+
+	void reset();
 
 	bool load(const char* fileName);
 
@@ -133,7 +135,7 @@ public:
 
 private:
 	size_t vertNum;
-	Vec3f** vertCoeffs;
+	Vec3f** vertCoeffs = nullptr;
 	void runLighting(LightingModel& model,
 		Vec3f* coeffs, PRTSample* samples, size_t numSamples);
 	PRTSample* genSamples(size_t numSamples);

@@ -1,3 +1,6 @@
+#define NUM_SCENES 3
+#define START_SCENE 1
+
 #include <time.h>
 
 #include <GL/glew.h>
@@ -11,13 +14,30 @@
 Camera camera;
 MorphTarget morphTarget;
 
+size_t currentScene;
+
 size_t frame;
 clock_t lastTime;
 
-const char* morphList[] = {
-	"Morphs/Head.obj",
-	"Morphs/Mouth.obj",
-	"Morphs/Smile.obj"
+vector<const char*> morphList[NUM_SCENES] = {
+	{
+	"Models/Bunny/Bunny.obj"
+	},
+	{
+	"Models/Cornell.obj"
+	},
+	{
+		"Models/Monkey/Monkey.obj",
+		"Models/Monkey/MonkeyTwist.obj"
+	},
+	{
+		"Morphs/Head.obj",
+		"Morphs/Mouth.obj",
+		"Morphs/Smile.obj",
+		"Morphs/Colbert.obj",
+		"Morphs/HeadTilt.obj",
+		"Morphs/HeadForward.obj"
+	}
 };
 
 void render()
@@ -65,7 +85,25 @@ void keys(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 't':
-		LDPRT::toggle = !LDPRT::toggle;
+		MorphTarget::toggle = (MorphTarget::toggle + 1) % 4;
+		break;
+	case 'r':
+		MorphTarget::tess = !MorphTarget::tess;
+		break;
+	case 'n':
+
+		currentScene = (currentScene + 1) % NUM_SCENES;
+
+		morphTarget.reset();
+		morphTarget.load(
+			(const char**)&morphList[currentScene].at(0),
+			morphList[currentScene].size()
+		);
+
+		break;
+	case 'y':
+		MorphTarget::animate = !MorphTarget::animate;
+
 		break;
 	}
 	//printf("%i\n", LDPRT::toggle);
@@ -106,7 +144,13 @@ void init()
 
 	SphericalHarmonic::genConstants();
 
-	morphTarget.load(morphList, sizeof(morphList) / sizeof(morphList[0]));
+	// setup scene
+	currentScene = START_SCENE;
+
+	morphTarget.load(
+		(const char**)&morphList[currentScene].at(0),
+		morphList[currentScene].size()
+	);
 
 	// setup camera
 	camera.setAt(Vec3f(0, 0, 0));

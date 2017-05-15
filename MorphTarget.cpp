@@ -17,6 +17,10 @@ GLuint MorphTarget::morphTargetProgram, MorphTarget::morphTargetVS,
 	MorphTarget::morphTargetTCS, MorphTarget::morphTargetTES,
 	MorphTarget::morphTargetGS, MorphTarget::morphTargetFS;
 
+size_t MorphTarget::toggle = 0;
+bool MorphTarget::animate = false;
+bool MorphTarget::tess = false;
+
 Morphs::Morphs()
 {
 
@@ -164,10 +168,33 @@ MorphTarget::MorphTarget()
 
 MorphTarget::~MorphTarget()
 {
+	reset();
+}
+
+void MorphTarget::reset()
+{
 	delete[] morphs;
 
-	glDeleteBuffers(baseObj.getNumMaterials(), sceneBuffer);
+	if (sceneBuffer != nullptr)
+	{
+		glDeleteBuffers(baseObj.getNumMaterials(), sceneBuffer);
+	}
+
+	if (sceneBuffer != 0)
+	{
+		glDeleteFramebuffers(1, &sceneFB);
+		sceneFB = 0;
+	}
+
+	if (sceneTex != 0)
+	{
+		glDeleteTextures(1, &sceneTex);
+		sceneTex = 0;
+	}
+
+	baseObj.reset();
 	delete[] sceneBuffer;
+	sceneBuffer = nullptr;
 }
 
 void MorphTarget::load(const char** morphList, size_t size)
@@ -186,16 +213,37 @@ void MorphTarget::load(const char** morphList, size_t size)
 	oily = .5f;
 
 	// load environment
-	Image lightProbeTex;
-	lightProbeTex.load("HDRI/White_Room.jpg");
-	environTex = lightProbeTex.genGlImage();
-
+	if (environTex == 0)
+	{
+		Image lightProbeTex;
+		lightProbeTex.load("HDRI/White_Room.jpg");
+		environTex = lightProbeTex.genGlImage();
+	}
+	
 	// setup buffer
 	{
 		baseObj.Load(morphList[0]);
-
-		ldprt.load(&baseObj);
 		
+		string baseName(morphList[0]);
+		size_t startIndex = baseName.find_last_of("/\\");
+
+		if (startIndex == string::npos)
+			startIndex = 0;
+
+		size_t lastIndex = baseName.find_last_of('.');
+
+		if (lastIndex == string::npos)
+			lastIndex = baseName.length();
+
+		if (baseName.length() <= startIndex + 1 || lastIndex <= startIndex + 1)
+		{
+			cout << "ERROR Morph Target: cannot find name of file" << endl;
+			return;
+		}
+
+		ldprt.load(baseName.substr(startIndex + 1, lastIndex - startIndex - 1).c_str(),
+			&baseObj);
+
 		// create morph
 		morphs[0].genTex(&baseObj, NULL);
 		morphs[0].setupViewport();
@@ -249,6 +297,9 @@ void MorphTarget::load(const char** morphList, size_t size)
 		}
 	}
 
+	// unbind buffer
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	
 	for (size_t i = 1; i < size; i++)
 	{
 		ObjLoader obj;
@@ -260,11 +311,11 @@ void MorphTarget::load(const char** morphList, size_t size)
 	
 	glGenFramebuffers(1, &sceneFB);
 	glBindFramebuffer(GL_FRAMEBUFFER, sceneFB);
-	
+
 	// create rtv / scene tex
 	glGenTextures(1, &sceneTex);
 	glBindTexture(GL_TEXTURE_2D_ARRAY, sceneTex);
-	
+
 	glTexStorage3D(GL_TEXTURE_2D_ARRAY, 1,
 		GL_RGB32F, morphs[0].width(), morphs[0].width(), MORPH_CHAN);
 
@@ -273,12 +324,10 @@ void MorphTarget::load(const char** morphList, size_t size)
 		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i,
 			sceneTex, 0);
 	}
-	
-	// attatch buffer
-	GLenum drawBuffers[MORPH_CHAN];
 
+	// attatch buffer
 	glDrawBuffer(GL_COLOR_ATTACHMENT0);
-	
+
 	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
 		NULL, 0);
 
@@ -286,7 +335,7 @@ void MorphTarget::load(const char** morphList, size_t size)
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
-float timeL = 0;
+
 void MorphTarget::applyMorphs()
 {
 	// store old viewport
@@ -308,15 +357,16 @@ void MorphTarget::applyMorphs()
 	glPushMatrix();
 	{
 		morphs[0].setMorph(1.f, sceneTex, false);
-
-		// TODO: add other morphs
+		
 		for (size_t i = 1; i < numMorphs; i++)
 		{
-			float t = sin(timeL * float(i) * .0025f);
+			const float startOffset = -acos(.5);
+			float t = sin(timeM * float(i) * .0025f + startOffset);
 			t *= .5;
 			t += .5;
 
-			timeL++;
+			if (animate)
+				timeM++;
 
 			morphs[i].setMorph(t, sceneTex, true);
 		}
@@ -332,6 +382,25 @@ void MorphTarget::applyMorphs()
 
 void MorphTarget::draw()
 {
+	switch (toggle)
+	{
+	case 0:
+		baseObj.draw();
+		return;
+		break;
+	case 1:
+		ldprt.prtDraw();
+		return;
+		break;
+	case 2:
+		ldprt.draw();
+		return;
+		break;
+	case 3:
+		// continue to drawing below
+		break;
+	}
+
 	// apply morphs
 	applyMorphs();
 	
@@ -358,13 +427,13 @@ void MorphTarget::draw()
 	// environment
 	glUniform1f(
 		glGetUniformLocation(morphTargetProgram, "innerTess"),
-		4
+		tess ? 4 : 1
 	);
 
 	// environment
 	glUniform1f(
 		glGetUniformLocation(morphTargetProgram, "outerTess"),
-		4
+		tess ? 4 : 1
 	);
 
 	// environment

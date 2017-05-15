@@ -12,8 +12,9 @@ public:
 	LDPRT();
 	~LDPRT();
 
-	void load(ObjLoader* geo);
+	void load(const char* name, ObjLoader* geo);
 	void draw();
+	void prtDraw();
 
 	const Vec3f** getCoeffs()
 	{
@@ -25,18 +26,16 @@ public:
 		return (const GLuint*)harmonicTex;
 	}
 
-	static bool toggle;
-
 private:
 
 	void genSphericalHarmonicTextures6(size_t size);
 	void calcLDPRT(PRT* prt);
 	void calcLDPRTBFGS(PRT* prt);
 
-	Vec3f** coeffs;
+	Vec3f** coeffs = nullptr;
 
 	// textures
-	GLuint harmonicTex[9];
+	GLuint harmonicTex[9] = { 0 };
 	PRT prt;
 	ObjLoader* obj;
 };

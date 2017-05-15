@@ -57,8 +57,13 @@ public:
 	MorphTarget();
 	~MorphTarget();
 
+	static size_t toggle;
+	static bool animate;
+	static bool tess;
+
 	void load(const char** morphList, size_t size);
 	void draw();
+	void reset();
 private:
 	void applyMorphs();
 
@@ -66,7 +71,7 @@ private:
 	Morphs* morphs = nullptr;
 	GLuint sceneFB = 0, sceneTex = 0;
 
-	GLuint* sceneBuffer = 0;
+	GLuint* sceneBuffer = nullptr;
 
 	ObjLoader baseObj;
 
@@ -89,6 +94,7 @@ private:
 
 	// options
 	float oily;
+	float timeM = 0;
 };
 
 #endif
