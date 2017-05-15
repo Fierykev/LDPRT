@@ -30,7 +30,7 @@ deformed orientation. LDPRTs work best for limited motion such as facial
 expressions as they do not fully model global illumination for the
 rotated frame.  Surprisingly, LDPRTs do not need to store any more data than
 PRTs (assuming one lobe axis) and can be evaluated in constant time per vertex.
-For the purposes of this project, spherical harmonics are evaluated up to l=6, 
+For the purposes of this project, a 6th order Spherical Harmonic is evaluated, 
 leading to 36 coefficients for both the PRT and LDPRT.
 
 **<p align="center">Morph Targeting</p>**
@@ -66,7 +66,7 @@ lobe axis for rotation which, in most cases, is the same as the normal.
 Hence, after the BFGS is completed, model normals are replaced with the
 direction of Zonal Harmonic lobe axis.  Since the BFGS algorithm needs the
 gradient of the objective variables, Mathematica was used to compute the
-gradient of a l=0,...,5 Spherical Harmonic.
+gradient of the 6th degree Spherical Harmonic.
 
 <p align="center">(approximately .01 difference for single lobe which is not noticeable)</p>
 
