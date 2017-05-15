@@ -1,7 +1,7 @@
 **<p align="center">Local Deformable Precomputed Radiance Transfer</p>**
 
 <p align="center">(Note: all photos are taken from the project and run at approximately
-40FPS on a GTX 970M)</p>
+40FPS with AA and greater than 60 FPS without AA on a GTX 970M)</p>
 
 <p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
