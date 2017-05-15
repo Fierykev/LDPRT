@@ -108,6 +108,9 @@ converges slowly.  Since PRTs must cast millions of rays just for shadows,
 it is not feasible to produce enough rays for random walk to yield the
 correct results.
 
+<p align="center">Note how the area below the cheek is lit although the light source is on the other side of the model.</p>
+<p align="center"><img src=image9.png width="300" height="300" /></p>
+
 **<p align="center">Artist Defined Albedo</p>**
 
 To give artists more control over the process, an 
