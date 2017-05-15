@@ -37,6 +37,7 @@ Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows
 <p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that drastically alters vertex positions:</p>
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
+<p align="center"><img src="media/image12.png" width="300" height="300" /><img src="media/image13.png" width="300" height="300" /></p>
 
 **<p align="center">Wrinkle Model</p>**
 
