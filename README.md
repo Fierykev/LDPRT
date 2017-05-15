@@ -1,7 +1,7 @@
 **<p align="center">Local Deformable Precomputed Radiance Transfer</p>**
 
 <p align="center">(Note: all photos are taken from the project and run at approximately
-40FPS)</p>
+40FPS on a GTX)</p>
 
 <p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
@@ -133,3 +133,11 @@ https://en.wikipedia.org/wiki/Spherical_harmonics#Condon.E2.80.93Shortley_phase
 http://graphics.cs.williams.edu/data/meshes.xml
 
 https://graphics.stanford.edu/data/3Dscanrep/
+
+(Note that assets and libraries could not be included in this git repo due to filesize constraints.  I am currently uploading them to my google drive and will link to it by the presentation tomorrow)
+
+**<p align="center">Artifact</p>**
+
+<p align="center"><img src="media/image11.png" /></p>
+
+Hey ladies he's single!!!!
