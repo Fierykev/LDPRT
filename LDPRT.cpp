@@ -172,10 +172,10 @@ int EvalLDPRT::progress(
 	int ls
 	)
 {
-	printf("Iteration %d:\n", k);
+	/*printf("Iteration %d:\n", k);
 	printf("  fx = %f, x[0] = %f, x[1] = %f, x[2] = %f\n", fx, x[0], x[1], x[2]);
 	printf("  xnorm = %f, gnorm = %f, step = %f\n", xnorm, gnorm, step);
-	printf("\n");
+	printf("\n");*/
 
 	return 0;
 }
@@ -346,8 +346,8 @@ void LDPRT::calcLDPRTBFGS(PRT* prt)
 		optAxis = ((Vec3f*)vars)[0];
 
 		/* Report the result. */
-		printf("L-BFGS optimization terminated with status code = %d\n", ret);
-		printf("  fx = %f, x[0] = %f, x[1] = %f, x[2] = %f\n", fx, optAxis[0], optAxis[1], optAxis[2]);
+		//printf("L-BFGS optimization terminated with status code = %d\n", ret);
+		//printf("  fx = %f, x[0] = %f, x[1] = %f, x[2] = %f\n", fx, optAxis[0], optAxis[1], optAxis[2]);
 	}
 
 	lbfgs_free(vars);
@@ -380,8 +380,8 @@ void LDPRT::load(const char* name, ObjLoader* geo)
 	genSphericalHarmonicTextures6(NUM_BANDS * NUM_BANDS);
 	
 	// convert prt to ldprt
-	//calcLDPRTBFGS(&prt);
-	calcLDPRT(&prt);
+	calcLDPRTBFGS(&prt);
+	//calcLDPRT(&prt);
 }
 
 void LDPRT::draw()

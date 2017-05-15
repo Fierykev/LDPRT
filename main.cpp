@@ -21,10 +21,10 @@ clock_t lastTime;
 
 vector<const char*> morphList[NUM_SCENES] = {
 	{
-	"Models/Bunny/Bunny.obj"
+		"Models/Bunny/Bunny.obj"
 	},
 	{
-	"Models/Cornell.obj"
+		"Models/Cornell.obj" // Models/Cornell/Cornell.obj"
 	},
 	{
 		"Models/Monkey/Monkey.obj",
@@ -162,7 +162,7 @@ void init()
 }
 
 int main(int argc, char** argv)
-{		
+{
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE |
 		GLUT_RGB | GLUT_DEPTH | GLUT_MULTISAMPLE);

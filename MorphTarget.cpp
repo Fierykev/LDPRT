@@ -173,6 +173,9 @@ MorphTarget::~MorphTarget()
 
 void MorphTarget::reset()
 {
+	// reset time
+	timeM = 0.f;
+
 	delete[] morphs;
 
 	if (sceneBuffer != nullptr)
