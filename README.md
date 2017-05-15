@@ -102,6 +102,7 @@ skin is approximated. After moving a set distance, the path is randomly
 rotated by a certain number of degrees before proceeding. Hence,
 subsurface scattering is implemented via monte carlo integration.
 
+<p align="center"><img src="media/image9.png" width="400" height="400" /></p>
 
 <p align="center">Note how the area below the cheek is lit although the light
 source is on the other side of the model.</p>
