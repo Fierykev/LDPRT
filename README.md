@@ -148,6 +148,8 @@ http://graphics.cs.williams.edu/data/meshes.xml
 
 https://graphics.stanford.edu/data/3Dscanrep/
 
+https://www.blender.org/
+
 (Note that assets and libraries could not be included in this git repo due to filesize constraints.  I am currently uploading them to my google drive and will link to it by the presentation tomorrow)
 
 **<p align="center">Artifact</p>**
