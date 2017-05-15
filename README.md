@@ -106,12 +106,7 @@ rotated by a certain number of degrees before proceeding.  Unfortunately,
 the effects of subsurface scattering are hard to see since random walk
 converges slowly.  Since PRTs must cast millions of rays just for shadows,
 it is not feasible to produce enough rays for random walk to yield the
-correct results
-
-<p align="center"><img src="media/image9.png" width="400" height="400" /></p>
-
-<p align="center">Note how the area below the cheek is lit although the light
-source is on the other side of the model.</p>
+correct results.
 
 **<p align="center">Artist Defined Albedo</p>**
 
