@@ -1,7 +1,7 @@
 **<p align="center">Local Deformable Precomputed Radiance Transfer</p>**
 
 <p align="center">(Note: all photos are taken from the project and run at approximately
-40FPS on a GTX)</p>
+40FPS on a GTX 970M)</p>
 
 <p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
@@ -37,6 +37,7 @@ Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows
 <p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that drastically alters vertex positions:</p>
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
+<p align="center"><img src="media/image12.png" width="300" height="300" /><img src="media/image13.png" width="300" height="300" /></p>
 
 **<p align="center">Wrinkle Model</p>**
 
@@ -140,4 +141,4 @@ https://graphics.stanford.edu/data/3Dscanrep/
 
 <p align="center"><img src="media/image11.png" /></p>
 
-Hey ladies he's single!!!!
+Hey ladies, he's single!!!!
