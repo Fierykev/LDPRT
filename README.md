@@ -64,7 +64,6 @@ direction of Zonal Harmonic lobe axis.  Since the BFGS algorithm needs the
 gradient of the objective variables, Mathematica was used to compute the
 gradient of a l=0,...,5 Spherical Harmonic.
 
-
 <p align="center">(approximately .01 difference for single lobe which is not noticeable)</p>
 
 <p align="center"><img src="media/image5.png" width="300" height="300" /><img src="media/image6.png" width="300" height="300" /></p>
@@ -78,6 +77,8 @@ Thus, for each sample light source, one ray is produced for every vertex per sam
 Because this is similar to Monte Carlo integration in a ray tracer for soft shadows,
 soft shadows are obtained with no additional cost to what the PRT would already have
 to do to light the scene.
+
+<p align="center"><img src="media/image10.png" width="400" height="400" /></p>
 
 **<p align="center">Interreflections</p>**
 
