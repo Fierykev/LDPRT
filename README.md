@@ -106,7 +106,16 @@ subsurface scattering is implemented via monte carlo integration.
 <p align="center">Note how the area below the cheek is lit although the light
 source is on the other side of the model.</p>
 
-<p align="center"><img src="media/image9.png" width="400" height="400" /></p>
+**<p align="center">Artist Defined Albedo</p>**
+
+Instead of trying to find an approximation of subsurface scattering, an 
+artist can define the thickness of a texture via an albedo map.  The map's
+RGB channels are interpreted as the albedo color while the alpha channel is
+the thickness.  By applying backlight whose intensity is effected by thickness
+and color of the albedo texture, a cheaper version of subsurface scattering can
+be achieved.
+
+<p align="center"><img src="media/image12.png" width="400" height="400" /><img src="media/image14.png" width="400" height="400" /></p>
 
 **<p align="center">Libraries</p>**
 OpenGL - for Rendering
