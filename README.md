@@ -109,12 +109,11 @@ source is on the other side of the model.</p>
 
 **<p align="center">Artist Defined Albedo</p>**
 
-Instead of trying to find an approximation of subsurface scattering, an 
+To give artists more control over the process, an 
 artist can define the thickness of a texture via an albedo map.  The map's
 RGB channels are interpreted as the albedo color while the alpha channel is
-the thickness.  By applying backlight whose intensity is effected by thickness
-and color of the albedo texture, a cheaper version of subsurface scattering can
-be achieved.
+the thickness.  By applying a backlight whose intensity is effected by thickness
+and color of the albedo texture, a lighting scheme for thin membranes is created.
 
 <p align="center">Note how the portion of the model that is front lit displays a dark wood texture,
 whereas the portion that is backlit uses a leopard pattern.  The lighting implies some leopard lining inside
