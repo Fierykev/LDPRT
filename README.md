@@ -50,7 +50,7 @@ A displacement map and bump map are both utilized because the
 displacement map operates at a coarser grain than the bump map, leading
 to a good mix of detail at interactive framerates.
 
-<p align="center"><img src="media/image4.png" width="400" height="400" /></p>
+<p align="center"><img src="media/image4.png" width="300" height="300" /></p>
 
 **<p align="center">Optimization of Lobe Axis</p>**
 
@@ -70,6 +70,14 @@ gradient of a l=0,...,5 Spherical Harmonic.
 <p align="center"><img src="media/image5.png" width="300" height="300" /><img src="media/image6.png" width="300" height="300" /></p>
 
 **<p align="center">Soft shadows</p>**
+
+To compute a PRT, several samples are taken for light sources scattered around a sphere
+that has an infinite radius.  Since the light source is infinitely far away, a ray can
+be cast from every vertex on the mesh towards the light source to see if it is blocked.  
+Thus, for each sample light source, one ray is produced for every vertex per sample.  
+Because this is similar to Monte Carlo integration in a ray tracer for soft shadows,
+soft shadows are obtained with no additional cost to what the PRT would already have
+to do to light the scene.
 
 **<p align="center">Interreflections</p>**
 
