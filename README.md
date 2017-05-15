@@ -29,7 +29,7 @@ an LDPRT can quickly rotate a rest coordinate frame to its current
 deformed orientation. LDPRTs work best for limited motion such as facial
 expressions as they do not fully model global illumination for the
 rotated frame.  Surprisingly, LDPRTs do not need to store any more data than
-PRTs (assuming one lobe axis) and can be evaluated in constant time per vertex.  
+PRTs (assuming one lobe axis) and can be evaluated in constant time per vertex.
 For the purposes of this project, spherical harmonics are evaluated up to l=6, 
 leading to 36 coefficients for both the PRT and LDPRT.
 
