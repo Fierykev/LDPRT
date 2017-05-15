@@ -32,7 +32,7 @@ rotated frame.
 
 **<p align="center">Morph Targeting</p>**
 
-Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows for an artist to move vertices on a model to a desired position in order to more effectively create the ideal pose.  Once all poses / morphs are made by the artist, a base position (a chosen pose) is established.  To animate the figure, the artist interpolates between the difference between the morph vertex's position and that of the base.  Morph Targets are primarily used in facial animation to give the artist complete control over how a character looks.  Since the process is cumbersome and animations are not as smooth as those produced by Skeletal Animation, Morph Targeting still remains limited to expression.  However, because facial expressions do not require large vertex changes, LDPRT works perfectly for Morph Targeting.
+Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows for an artist to move vertices on a model to a desired position in order to more effectively create the ideal pose.  Once all poses / morphs are made by the artist, a base position (a chosen pose) is established.  To animate the figure, the artist interpolates between the difference between the morph vertex's position and that of the base.  Morph Targets are primarily used in facial animation to give the artist complete control over how a character looks.  The primary downside to Morph Targeting is that it is a much more cumbersome job for an artist than rigging a bone structure than Skeletal Animation.  However, the result shows more polish in the detail of the animation key frames.
 
 <p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that drastically alters vertex positions:</p>
 
@@ -106,7 +106,16 @@ subsurface scattering is implemented via monte carlo integration.
 <p align="center">Note how the area below the cheek is lit although the light
 source is on the other side of the model.</p>
 
-<p align="center"><img src="media/image9.png" width="400" height="400" /></p>
+**<p align="center">Artist Defined Albedo</p>**
+
+Instead of trying to find an approximation of subsurface scattering, an 
+artist can define the thickness of a texture via an albedo map.  The map's
+RGB channels are interpreted as the albedo color while the alpha channel is
+the thickness.  By applying backlight whose intensity is effected by thickness
+and color of the albedo texture, a cheaper version of subsurface scattering can
+be achieved.
+
+<p align="center"><img src="media/image12.png" width="400" height="400" /><img src="media/image14.png" width="400" height="400" /></p>
 
 **<p align="center">Libraries</p>**
 OpenGL - for Rendering
