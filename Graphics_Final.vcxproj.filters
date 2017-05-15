@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\BVH">
+      <UniqueIdentifier>{341ede1f-ebc9-4448-95a1-3c508cca2c66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\BVH">
+      <UniqueIdentifier>{1d2dea80-6f48-443f-b216-b3ce6da079ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shader">
+      <UniqueIdentifier>{9fa488b0-eb6c-49a4-9119-1029ff5befbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shader\MorphTarget">
+      <UniqueIdentifier>{4587af12-ca2e-41e3-9b8a-4418afc0b2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shader\Render">
+      <UniqueIdentifier>{f2bdf136-2e0a-4338-bc55-c2640b4b57d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shader\PRT">
+      <UniqueIdentifier>{f2084b73-ebb0-45f4-9276-d4b09addeee6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SphericalHarmonic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PRT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BVH.h">
+      <Filter>Header Files\BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="HLSL_CPU.h">
+      <Filter>Header Files\BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LDPRT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LightProb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MorphTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFileLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RenderMorph.fs">
+      <Filter>Header Files\Shader\MorphTarget</Filter>
+    </None>
+    <None Include="RenderMorph.gs">
+      <Filter>Header Files\Shader\MorphTarget</Filter>
+    </None>
+    <None Include="RenderMorph.vs">
+      <Filter>Header Files\Shader\MorphTarget</Filter>
+    </None>
+    <None Include="Render.vs">
+      <Filter>Header Files\Shader\Render</Filter>
+    </None>
+    <None Include="Render.fs">
+      <Filter>Header Files\Shader\Render</Filter>
+    </None>
+    <None Include="Render.gs">
+      <Filter>Header Files\Shader\Render</Filter>
+    </None>
+    <None Include="Render.tes">
+      <Filter>Header Files\Shader\Render</Filter>
+    </None>
+    <None Include="Render.tcs">
+      <Filter>Header Files\Shader\Render</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LDPRT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LightProb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MorphTarget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFileLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PRT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SphericalHarmonic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BVHConstruct.cpp">
+      <Filter>Source Files\BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="BVHTraversal.cpp">
+      <Filter>Source Files\BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="BVH.cpp">
+      <Filter>Source Files\BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="MortonCodes.cpp">
+      <Filter>Source Files\BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallelRadixSort.cpp">
+      <Filter>Source Files\BVH</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

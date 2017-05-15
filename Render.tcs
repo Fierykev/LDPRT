@@ -1,0 +1,61 @@
+#define NUM_BANDS 6
+#define NUM_COEFF_GRPS 2
+
+layout(vertices = 3) out;
+
+// IN
+in VSOut {
+	flat vec4 pos;
+	flat vec4 origPos;
+	smooth vec3 norm;
+	smooth vec3 tan;
+	smooth vec2 texCoord;
+
+	smooth vec4 coeffsR[NUM_COEFF_GRPS];
+	smooth vec4 coeffsG[NUM_COEFF_GRPS];
+	smooth vec4 coeffsB[NUM_COEFF_GRPS];
+} tcsIn[];
+
+// OUT
+out VSOut {
+	flat vec4 pos;
+	flat vec4 origPos;
+	smooth vec3 norm;
+	smooth vec3 tan;
+	smooth vec2 texCoord;
+
+	smooth vec4 coeffsR[NUM_COEFF_GRPS];
+	smooth vec4 coeffsG[NUM_COEFF_GRPS];
+	smooth vec4 coeffsB[NUM_COEFF_GRPS];
+} tcsOut[];
+
+// UNIFORM
+uniform float innerTess;
+uniform float outerTess;
+
+void main()
+{
+	// copy over data
+	tcsOut[gl_InvocationID].pos = tcsIn[gl_InvocationID].pos;
+	tcsOut[gl_InvocationID].origPos = tcsIn[gl_InvocationID].origPos;
+	tcsOut[gl_InvocationID].norm = tcsIn[gl_InvocationID].norm;
+	tcsOut[gl_InvocationID].tan = tcsIn[gl_InvocationID].tan;
+	tcsOut[gl_InvocationID].texCoord = tcsIn[gl_InvocationID].texCoord;
+
+	
+	// copy coeffs
+	for (int i = 0; i < NUM_COEFF_GRPS; i++)
+	{
+		tcsOut[gl_InvocationID].coeffsR[i] = tcsIn[gl_InvocationID].coeffsR[i];
+		tcsOut[gl_InvocationID].coeffsG[i] = tcsIn[gl_InvocationID].coeffsG[i];
+		tcsOut[gl_InvocationID].coeffsB[i] = tcsIn[gl_InvocationID].coeffsB[i];
+	}
+
+	// only for one thread needed to setup tess shader
+	if (gl_InvocationID == 0)
+	{
+		gl_TessLevelInner[0] = gl_TessLevelInner[1] = innerTess;
+		gl_TessLevelOuter[0] = gl_TessLevelOuter[1] =
+			gl_TessLevelOuter[2] = gl_TessLevelOuter[3] = outerTess;
+	}
+}

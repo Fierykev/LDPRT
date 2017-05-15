@@ -1,0 +1,101 @@
+#define NUM_BANDS 6
+#define NUM_COEFF_GRPS 2
+
+layout(triangles, equal_spacing, ccw) in;
+
+// UNIFROM
+uniform mat4 worldViewProjection;
+
+// bump norm
+uniform bool useDispTex;
+uniform float displaceMult;
+uniform sampler2D dispTex;
+
+// IN
+in VSOut {
+	flat vec4 pos;
+	flat vec4 origPos;
+	smooth vec3 norm;
+	smooth vec3 tan;
+	smooth vec2 texCoord;
+
+	smooth vec4 coeffsR[NUM_COEFF_GRPS];
+	smooth vec4 coeffsG[NUM_COEFF_GRPS];
+	smooth vec4 coeffsB[NUM_COEFF_GRPS];
+} tesIn[];
+
+// OUT
+out VSOut {
+	flat vec4 pos;
+	flat vec4 origPos;
+	smooth vec3 norm;
+	smooth vec3 tan;
+	smooth vec2 texCoord;
+
+	smooth vec4 coeffsR[NUM_COEFF_GRPS];
+	smooth vec4 coeffsG[NUM_COEFF_GRPS];
+	smooth vec4 coeffsB[NUM_COEFF_GRPS];
+} tesOut;
+
+void main()
+{
+	vec4 p0 = gl_TessCoord.x * tesIn[0].pos;
+	vec4 p1 = gl_TessCoord.y * tesIn[1].pos;
+	vec4 p2 = gl_TessCoord.z * tesIn[2].pos;
+	tesOut.pos = p0 + p1 + p2;
+    
+	vec4 op0 = gl_TessCoord.x * tesIn[0].origPos;
+	vec4 op1 = gl_TessCoord.y * tesIn[1].origPos;
+	vec4 op2 = gl_TessCoord.z * tesIn[2].origPos;
+	tesOut.origPos = op0 + op1 + op2;
+
+	vec3 n0 = gl_TessCoord.x * tesIn[0].norm;
+	vec3 n1 = gl_TessCoord.y * tesIn[1].norm;
+	vec3 n2 = gl_TessCoord.z * tesIn[2].norm;
+	tesOut.norm = normalize(n0 + n1 + n2);
+
+	vec3 t0 = gl_TessCoord.x * tesIn[0].tan;
+	vec3 t1 = gl_TessCoord.y * tesIn[1].tan;
+	vec3 t2 = gl_TessCoord.z * tesIn[2].tan;
+	tesOut.tan = t0 + t1 + t2;
+
+	vec2 tc0 = gl_TessCoord.x * tesIn[0].texCoord;
+	vec2 tc1 = gl_TessCoord.y * tesIn[1].texCoord;
+	vec2 tc2 = gl_TessCoord.z * tesIn[2].texCoord;
+	tesOut.texCoord = tc0 + tc1 + tc2;
+
+	// copy coeffs
+	for (int i = 0; i < NUM_COEFF_GRPS; i++)
+	{
+		vec4 r0 = gl_TessCoord.x * tesIn[0].coeffsR[i];
+		vec4 r1 = gl_TessCoord.y * tesIn[1].coeffsR[i];
+		vec4 r2 = gl_TessCoord.z * tesIn[2].coeffsR[i];
+
+		vec4 g0 = gl_TessCoord.x * tesIn[0].coeffsG[i];
+		vec4 g1 = gl_TessCoord.y * tesIn[1].coeffsG[i];
+		vec4 g2 = gl_TessCoord.z * tesIn[2].coeffsG[i];
+
+		vec4 b0 = gl_TessCoord.x * tesIn[0].coeffsB[i];
+		vec4 b1 = gl_TessCoord.y * tesIn[1].coeffsB[i];
+		vec4 b2 = gl_TessCoord.z * tesIn[2].coeffsB[i];
+
+		tesOut.coeffsR[i] = r0 + r1 + r2;
+		tesOut.coeffsG[i] = g0 + g1 + g2;
+		tesOut.coeffsB[i] = b0 + b1 + b2;
+	}
+
+	// apply displacement map
+	float height = 0;
+
+	if (useDispTex)
+	{
+		height = texture(dispTex, tesOut.texCoord).x;
+
+		height -= .5f;
+	}
+
+	tesOut.pos += vec4(tesOut.norm * (height * displaceMult), 0);
+	tesOut.pos = worldViewProjection * tesOut.pos;
+
+	gl_Position = tesOut.pos;
+}
