@@ -37,7 +37,7 @@ leading to 36 coefficients for both the PRT and LDPRT.
 
 Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows for an artist to move vertices on a model to a desired position in order to more effectively create the ideal pose.  Once all poses / morphs are made by the artist, a base position (a chosen pose) is established.  To animate the figure, the artist interpolates between the difference between the morph vertex's position and that of the base.  Morph Targets are primarily used in facial animation to give the artist complete control over how a character looks.  The primary downside to Morph Targeting is that it is a much more cumbersome job for an artist than rigging a bone structure than Skeletal Animation.  However, the result shows more polish in the detail of the animation key frames.
 
-<p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that drastically alters vertex positions:</p>
+<p align="center">Left side is the Base Position (no morph applied); Right side is a Morph Target that alters vertex positions:</p>
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
 <p align="center"><img src="media/image12.png" width="300" height="300" /><img src="media/image13.png" width="300" height="300" /></p>
