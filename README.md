@@ -1,11 +1,11 @@
-<p align="center">Local Deformable Precomputed Radiance Transfer</p>
+**<p align="center">Local Deformable Precomputed Radiance Transfer</p>**
 
 <p align="center">(Note: all photos are taken from the project and run at approximately
 40FPS)</p>
 
 <p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
-<p align="center">Motivation:</p>
+**<p align="center">Motivation:</p>**
 
 Local Deformable Precomputed Radiance Transfer (LDPRT) is a method
 proposed by Microsoft in 2005 to compensate for the common problems with
@@ -30,7 +30,7 @@ deformed orientation. LDPRTs work best for limited motion such as facial
 expressions as they do not fully model global illumination for the
 rotated frame.
 
-<p align="center">Morph Targeting</p>
+**<p align="center">Morph Targeting</p>**
 
 Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows for an artist to move vertices on a model to a desired position in order to more effectively create the ideal pose.  Once all poses / morphs are made by the artist, a base morph (a chosen pose) is established.  To animate the figure, the artist interpolates between the difference between the morph vertex's position and that of the base.  Morph Targets are primarily used in facial animation to give the artist complete control over how a character looks.  Since the process is cumbersome and animations are not as smooth as those produced by Skeletal Animation, Morph Targeting still remains limited to expression.  However, because facial expressions do not require large vertex changes, LDPRT works perfectly for Morph Targeting.
 
@@ -38,7 +38,7 @@ Morph Targeting is an alternative to Skeletal Animation.  Morph Targeting allows
 
 <p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
 
-<p align="center">Wrinkle Model:</p>
+**<p align="center">Wrinkle Model:</p>**
 
 A wrinkle model was also implemented to alter normals based on the
 difference in primitive area between the rest and deformed frame.
@@ -52,7 +52,7 @@ to a good mix of detail at interactive framerates.
 
 <p align="center"><img src="media/image4.png" width="400" height="400" /></p>
 
-<p align="center">Optimization of Lobe Axis</p>
+**<p align="center">Optimization of Lobe Axis</p>**
 
 Using Zonal Harmonics, LDPRTs estimate PRT lighting with a BFGS to
 minimize error between the two models. Although Zonal Harmonics can have
@@ -60,16 +60,18 @@ multiple lobe axis, one is chosen for this project to reduce the amount
 of data needing to be transferred to the GPU. Zonal Harmonics require a
 lobe axis for rotation which, in most cases, is the same as the normal.
 Hence, after the BFGS is completed, model normals are replaced with the
-direction of Zonal Harmonic lobe axis.
+direction of Zonal Harmonic lobe axis.  Since the BFGS algorithm needs the
+gradient of the objective variables, Mathematica was used to compute the
+gradient of a l=0,...,5 Spherical Harmonic.
 
 
 <p align="center">(approximately .01 difference for single lobe which is not noticeable)</p>
 
 <p align="center"><img src="media/image5.png" width="300" height="300" /><img src="media/image6.png" width="300" height="300" /></p>
 
-<p align="center">Soft shadows</p>
+**<p align="center">Soft shadows</p>**
 
-<p align="center">Interreflections</p>
+**<p align="center">Interreflections</p>**
 
 The results from the soft shadow PRT yield the amount of energy present
 at each vertex in the scene. To preform radiosity, all surfaces are
@@ -80,7 +82,7 @@ red color of the walls “bleed” onto the white boxes in the scene.
 
 <p align="center"><img src="media/image7.png" width="300" height="300" /><img src="media/image8.png" width="300" height="300" /></p>
 
-<p align="center">Subsurface Scattering</p>
+**<p align="center">Subsurface Scattering</p>**
 
 For subsurface scattering, the random walk algorithm is implemented. By
 choosing several randomly generated paths, the subsurface scattering of
