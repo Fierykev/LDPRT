@@ -1,11 +1,11 @@
-Local Deformable Precomputed Radiance Transfer
+<p align="center">Local Deformable Precomputed Radiance Transfer</p>
 
-(Note: all photos are taken from the project and run at approximately
-40FPS)
+<p align="center">(Note: all photos are taken from the project and run at approximately
+40FPS)</p>
 
-![](media/image1.png)
+<p align="center"><img src="media/image1.png" width="400" height="400" /></p>
 
-Motivation:
+<p align="center">Motivation:</p>
 
 Local Deformable Precomputed Radiance Transfer (LDPRT) is a method
 proposed by Microsoft in 2005 to compensate for the common problems with
@@ -30,11 +30,13 @@ deformed orientation. LDPRTs work best for limited motion such as facial
 expressions as they do not fully model global illumination for the
 rotated frame.
 
-Morph Targeting
+<p align="center">Morph Targeting</p>
 
-Example Facial Expression:
+<p align="center">Example Facial Expression:</p>
 
-![](media/image2.png)![](media/image3.png)
+<p align="center"><img src="media/image2.png" width="300" height="300" /><img src="media/image3.png" width="300" height="300" /></p>
+
+<p align="center">Wrinkle Model:</p>
 
 A wrinkle model was also implemented to alter normals based on the
 difference in primitive area between the rest and deformed frame.
@@ -46,9 +48,7 @@ A displacement map and bump map are both utilized because the
 displacement map operates at a coarser grain than the bump map, leading
 to a good mix of detail at interactive framerates.
 
-Wrinkle Model:
-
-![](media/image4.png)
+<p align="center"><img src="media/image4.png" width="400" height="400" /></p>
 
 Optimization of Lobe Axis
 
