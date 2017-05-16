@@ -163,8 +163,6 @@ https://graphics.stanford.edu/data/3Dscanrep/
 
 https://www.blender.org/
 
-<p align="center">(Note that assets and libraries could not be included in this git repo due to filesize constraints.  I am currently uploading them to my google drive and will link to it by the presentation tomorrow)</p>
-
 **<p align="center">Artifact</p>**
 
 <p align="center"><img src="media/image11.png" /></p>
